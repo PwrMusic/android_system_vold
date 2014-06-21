@@ -94,6 +94,13 @@ endif
 LOCAL_SHARED_LIBRARIES += $(common_libraries) libcrypto
 LOCAL_STATIC_LIBRARIES += libvold $(common_static_libraries)
 
+ifeq ($(BOARD_USES_HDMI),true)
+LOCAL_CFLAGS += -DBOARD_USES_HDMI
+LOCAL_SHARED_LIBRARIES += libhdmiclient
+LOCAL_C_INCLUDES += \
+	hardware/samsung_slsi/$(TARGET_BOARD_PLATFORM)/libhdmi/libhdmiservice
+endif
+
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
